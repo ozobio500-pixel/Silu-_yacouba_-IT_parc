@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="it_parc.Dashboard">
+        <div class="o_it_parc_dashboard o_content p-4">
+            <h1 class="mb-4">Dashboard IT Parc — TECHPARK CI</h1>
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <div class="card text-center p-3 border-primary">
+                        <h6 class="text-muted">Total équipements</h6>
+                        <h2 class="text-primary" t-esc="state.total_equipment"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center p-3 border-success">
+                        <h6 class="text-muted">Affectés</h6>
+                        <h2 class="text-success" t-esc="state.assigned_equipment"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center p-3 border-warning">
+                        <h6 class="text-muted">En maintenance</h6>
+                        <h2 class="text-warning" t-esc="state.maintenance_equipment"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center p-3 border-danger">
+                        <h6 class="text-muted">Alertes actives</h6>
+                        <h2 class="text-danger" t-esc="state.active_alerts"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card text-center p-3">
+                        <h6 class="text-muted">Contrats expirants (60j)</h6>
+                        <h3 t-esc="state.expiring_contracts"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center p-3">
+                        <h6 class="text-muted">Interventions planifiées</h6>
+                        <h3 t-esc="state.service_requests"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center p-3">
+                        <h6 class="text-muted">Retirés</h6>
+                        <h3 t-esc="state.retired_equipment"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card p-4">
+                        <h4 class="mb-3">État des équipements</h4>
+                        <t t-foreach="state.chartSeries" t-as="serie" t-key="serie.label">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span t-esc="serie.label"/>
+                                    <strong t-esc="serie.value"/>
+                                </div>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-info" role="progressbar"
+                                         t-attf-style="width: {{ serie.pct }}%;"
+                                         t-att-aria-valuenow="serie.value"/>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-4">
+                        <h4 class="mb-3">Répartition par catégorie</h4>
+                        <t t-foreach="categoryEntries" t-as="entry" t-key="entry[0]">
+                            <div class="d-flex justify-content-between border-bottom py-2">
+                                <span t-esc="entry[0]"/>
+                                <strong t-esc="entry[1]"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

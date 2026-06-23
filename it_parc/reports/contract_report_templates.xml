@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_it_parc_contract_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <h2>Fiche contrat</h2>
+                <table class="table table-sm">
+                    <tr><td><strong>Contrat</strong></td><td><t t-esc="doc.name"/></td></tr>
+                    <tr><td><strong>Fournisseur</strong></td><td><t t-esc="doc.supplier_id.name"/></td></tr>
+                    <tr><td><strong>Début</strong></td><td><t t-esc="doc.start_date"/></td></tr>
+                    <tr><td><strong>Fin</strong></td><td><t t-esc="doc.end_date"/></td></tr>
+                    <tr><td><strong>Jours restants</strong></td><td><t t-esc="doc.days_remaining"/></td></tr>
+                    <tr><td><strong>Montant</strong></td><td><t t-esc="doc.amount"/> <t t-esc="doc.currency_id.symbol"/></td></tr>
+                    <tr><td><strong>Statut</strong></td><td><t t-esc="dict(doc._fields['state'].selection).get(doc.state)"/></td></tr>
+                </table>
+            </t>
+        </t>
+    </template>
+    <record id="action_report_it_parc_contract" model="ir.actions.report">
+        <field name="name">Rapport contrat IT Parc</field>
+        <field name="model">it.parc.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">it_parc.report_it_parc_contract_document</field>
+        <field name="report_file">it_parc.report_it_parc_contract_document</field>
+        <field name="binding_model_id" ref="model_it_parc_contract"/>
+    </record>
+</odoo>

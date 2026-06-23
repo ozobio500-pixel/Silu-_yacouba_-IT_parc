@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_it_parc_intervention_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <h2>Rapport d'intervention</h2>
+                    <table class="table table-sm table-bordered">
+                        <tr><td><strong>Référence</strong></td><td><t t-esc="doc.name"/></td></tr>
+                        <tr><td><strong>Équipement</strong></td><td><t t-esc="doc.equipment_id.name"/></td></tr>
+                        <tr><td><strong>Type</strong></td><td><t t-esc="dict(doc._fields['intervention_type'].selection).get(doc.intervention_type)"/></td></tr>
+                        <tr><td><strong>Date planifiée</strong></td><td><t t-esc="doc.scheduled_date"/></td></tr>
+                        <tr><td><strong>Date début</strong></td><td><t t-esc="doc.date_start"/></td></tr>
+                        <tr><td><strong>Date fin</strong></td><td><t t-esc="doc.date_end or doc.date_done"/></td></tr>
+                        <tr><td><strong>Durée (h)</strong></td><td><t t-esc="doc.duration_hours"/></td></tr>
+                        <tr><td><strong>Coût</strong></td><td><t t-esc="doc.cost"/> <t t-esc="doc.currency_id.symbol"/></td></tr>
+                        <tr><td><strong>Technicien</strong></td><td><t t-esc="doc.technician_id.name"/></td></tr>
+                        <tr><td><strong>Statut</strong></td><td><t t-esc="dict(doc._fields['status'].selection).get(doc.status)"/></td></tr>
+                        <tr><td><strong>Description</strong></td><td><t t-esc="doc.description"/></td></tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+    <record id="action_report_it_parc_intervention" model="ir.actions.report">
+        <field name="name">Rapport intervention IT Parc</field>
+        <field name="model">it.parc.intervention</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">it_parc.report_it_parc_intervention_document</field>
+        <field name="report_file">it_parc.report_it_parc_intervention_document</field>
+        <field name="binding_model_id" ref="model_it_parc_intervention"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_it_parc_maintenance_history_document">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2>Historique des maintenances</h2>
+                <p><strong>TECHPARK CI - IT Parc</strong></p>
+                <p t-if="data and data.get('date_from')">
+                    Période : <t t-esc="data.get('date_from')"/> au <t t-esc="data.get('date_to')"/>
+                </p>
+                <t t-set="total_cost" t-value="sum(doc.cost or 0.0 for doc in docs)"/>
+                <t t-set="total_duration" t-value="sum(doc.duration_hours or 0.0 for doc in docs)"/>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Réf.</th><th>Équipement</th><th>Type</th><th>Début</th><th>Fin</th>
+                            <th>Durée (h)</th><th>Coût</th><th>Technicien</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td><t t-esc="doc.name"/></td>
+                                <td><t t-esc="doc.equipment_id.name"/></td>
+                                <td><t t-esc="dict(doc._fields['intervention_type'].selection).get(doc.intervention_type)"/></td>
+                                <td><t t-esc="doc.date_start"/></td>
+                                <td><t t-esc="doc.date_end or doc.date_done"/></td>
+                                <td><t t-esc="doc.duration_hours"/></td>
+                                <td><t t-esc="doc.cost"/></td>
+                                <td><t t-esc="doc.technician_id.name or ''"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5"><strong>TOTAL</strong></td>
+                            <td><strong><t t-esc="total_duration"/></strong></td>
+                            <td><strong><t t-esc="total_cost"/></strong></td>
+                            <td/>
+                        </tr>
+                    </tfoot>
+                </table>
+                <p><t t-esc="len(docs)"/> intervention(s) - Coût total : <strong><t t-esc="total_cost"/></strong></p>
+            </div>
+        </t>
+    </template>
+    <record id="action_report_it_parc_maintenance_history" model="ir.actions.report">
+        <field name="name">Historique maintenances IT Parc</field>
+        <field name="model">it.parc.intervention</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">it_parc.report_it_parc_maintenance_history_document</field>
+        <field name="report_file">it_parc.report_it_parc_maintenance_history_document</field>
+    </record>
+</odoo>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <!-- Départements -->
+    <record id="demo_dept_dsi" model="hr.department">
+        <field name="name">DSI</field>
+    </record>
+    <record id="demo_dept_commercial" model="hr.department">
+        <field name="name">Commercial</field>
+    </record>
+    <record id="demo_dept_support" model="hr.department">
+        <field name="name">Support Technique</field>
+    </record>
+
+    <!-- Employés -->
+    <record id="demo_employee_kouassi" model="hr.employee">
+        <field name="name">Kouassi Jean</field>
+        <field name="department_id" ref="demo_dept_dsi"/>
+    </record>
+    <record id="demo_employee_traore" model="hr.employee">
+        <field name="name">Traoré Aminata</field>
+        <field name="department_id" ref="demo_dept_commercial"/>
+    </record>
+    <record id="demo_employee_bamba" model="hr.employee">
+        <field name="name">Bamba Serge</field>
+        <field name="department_id" ref="demo_dept_support"/>
+    </record>
+
+    <!-- Contrats (3) -->
+    <record id="demo_contract_maintenance" model="it.parc.contract">
+        <field name="name">Contrat Maintenance Serveurs</field>
+        <field name="supplier_id" ref="base.res_partner_1"/>
+        <field name="start_date">2026-01-01</field>
+        <field name="end_date">2026-12-31</field>
+        <field name="renewal_date">2026-11-15</field>
+        <field name="amount">12000000</field>
+    </record>
+    <record id="demo_contract_licence" model="it.parc.contract">
+        <field name="name">Contrat Licences Microsoft</field>
+        <field name="supplier_id" ref="base.res_partner_2"/>
+        <field name="start_date">2025-07-01</field>
+        <field name="end_date">2026-06-30</field>
+        <field name="renewal_date">2026-06-01</field>
+        <field name="amount">4500000</field>
+    </record>
+    <record id="demo_contract_reseau" model="it.parc.contract">
+        <field name="name">Contrat Maintenance Réseau</field>
+        <field name="supplier_id" ref="base.res_partner_1"/>
+        <field name="start_date">2026-03-01</field>
+        <field name="end_date">2027-02-28</field>
+        <field name="amount">3200000</field>
+    </record>
+
+    <!-- Équipements (10) -->
+    <record id="demo_equipment_01" model="it.parc.equipment">
+        <field name="name">Ordinateur portable Admin</field>
+        <field name="serial_no">TPCI-001</field>
+        <field name="model">Dell Latitude 5540</field>
+        <field name="category">ordinateur</field>
+        <field name="site">Abidjan-Cocody</field>
+        <field name="employee_id" ref="demo_employee_kouassi"/>
+        <field name="department_id" ref="demo_dept_dsi"/>
+        <field name="state">assigned</field>
+        <field name="purchase_date">2024-03-15</field>
+        <field name="purchase_value">850000</field>
+        <field name="warranty_end_date">2027-03-15</field>
+        <field name="contract_id" ref="demo_contract_maintenance"/>
+    </record>
+    <record id="demo_equipment_02" model="it.parc.equipment">
+        <field name="name">Serveur ERP Production</field>
+        <field name="serial_no">TPCI-002</field>
+        <field name="model">HP ProLiant DL380</field>
+        <field name="category">serveur</field>
+        <field name="site">Abidjan-Cocody</field>
+        <field name="employee_id" ref="demo_employee_kouassi"/>
+        <field name="department_id" ref="demo_dept_dsi"/>
+        <field name="state">assigned</field>
+        <field name="purchase_date">2023-01-10</field>
+        <field name="purchase_value">4500000</field>
+        <field name="warranty_end_date">2026-01-10</field>
+        <field name="contract_id" ref="demo_contract_maintenance"/>
+    </record>
+    <record id="demo_equipment_03" model="it.parc.equipment">
+        <field name="name">Switch Core Datacenter</field>
+        <field name="serial_no">TPCI-003</field>
+        <field name="model">Cisco Catalyst 9300</field>
+        <field name="category">réseau</field>
+        <field name="site">Abidjan-Cocody</field>
+        <field name="department_id" ref="demo_dept_dsi"/>
+        <field name="state">assigned</field>
+        <field name="purchase_date">2022-11-20</field>
+        <field name="purchase_value">2800000</field>
+        <field name="warranty_end_date">2025-11-20</field>
+        <field name="contract_id" ref="demo_contract_reseau"/>
+    </record>
+    <record id="demo_equipment_04" model="it.parc.equipment">
+        <field name="name">PC Commercial 01</field>
+        <field name="serial_no">TPCI-004</field>
+        <field name="model">Lenovo ThinkPad E14</field>
+        <field name="category">ordinateur</field>
+        <field name="site">Abidjan-Plateau</field>
+        <field name="employee_id" ref="demo_employee_traore"/>
+        <field name="department_id" ref="demo_dept_commercial"/>
+        <field name="state">assigned</field>
+        <field name="purchase_date">2025-02-01</field>
+        <field name="purchase_value">620000</field>
+        <field name="warranty_end_date">2028-02-01</field>
+        <field name="contract_id" ref="demo_contract_licence"/>
+    </record>
+    <record id="demo_equipment_05" model="it.parc.equipment">
+        <field name="name">Imprimante Support</field>
+        <field name="serial_no">TPCI-005</field>
+        <field name="model">HP LaserJet Pro M404</field>
+        <field name="category">périphérique</field>
+        <field name="site">Abidjan-Cocody</field>
+        <field name="employee_id" ref="demo_employee_bamba"/>
+        <field name="department_id" ref="demo_dept_support"/>
+        <field name="state">maintenance</field>
+        <field name="purchase_date">2021-08-05</field>
+        <field name="purchase_value">320000</field>
+        <field name="warranty_end_date">2024-08-05</field>
+    </record>
+    <record id="demo_equipment_06" model="it.parc.equipment">
+        <field name="name">Téléphone IP Accueil</field>
+        <field name="serial_no">TPCI-006</field>
+        <field name="model">Yealink T46U</field>
+        <field name="category">réseau</field>
+        <field name="site">Abidjan-Cocody</field>
+        <field name="state">draft</field>
+        <field name="purchase_date">2024-06-12</field>
+        <field name="purchase_value">180000</field>
+        <field name="warranty_end_date">2027-06-12</field>
+    </record>
+    <record id="demo_equipment_07" model="it.parc.equipment">
+        <field name="name">Serveur Backup</field>
+        <field name="serial_no">TPCI-007</field>
+        <field name="model">Dell PowerEdge R740</field>
+        <field name="category">serveur</field>
+        <field name="site">Bouaké</field>
+        <field name="department_id" ref="demo_dept_dsi"/>
+        <field name="state">assigned</field>
+        <field name="purchase_date">2023-09-01</field>
+        <field name="purchase_value">5200000</field>
+        <field name="warranty_end_date">2026-09-01</field>
+        <field name="contract_id" ref="demo_contract_maintenance"/>
+    </record>
+    <record id="demo_equipment_08" model="it.parc.equipment">
+        <field name="name">PC Support 02</field>
+        <field name="serial_no">TPCI-008</field>
+        <field name="model">Dell OptiPlex 7090</field>
+        <field name="category">ordinateur</field>
+        <field name="site">Abidjan-Plateau</field>
+        <field name="employee_id" ref="demo_employee_bamba"/>
+        <field name="department_id" ref="demo_dept_support"/>
+        <field name="state">assigned</field>
+        <field name="purchase_date">2024-11-01</field>
+        <field name="purchase_value">580000</field>
+        <field name="warranty_end_date">2027-11-01</field>
+    </record>
+    <record id="demo_equipment_09" model="it.parc.equipment">
+        <field name="name">Routeur Agence Bouaké</field>
+        <field name="serial_no">TPCI-009</field>
+        <field name="model">FortiGate 60F</field>
+        <field name="category">réseau</field>
+        <field name="site">Bouaké</field>
+        <field name="department_id" ref="demo_dept_dsi"/>
+        <field name="state">retired</field>
+        <field name="purchase_date">2019-04-20</field>
+        <field name="purchase_value">1100000</field>
+        <field name="warranty_end_date">2022-04-20</field>
+    </record>
+    <record id="demo_equipment_10" model="it.parc.equipment">
+        <field name="name">Écran 27 pouces DSI</field>
+        <field name="serial_no">TPCI-010</field>
+        <field name="model">Dell UltraSharp U2722D</field>
+        <field name="category">périphérique</field>
+        <field name="site">Abidjan-Cocody</field>
+        <field name="employee_id" ref="demo_employee_kouassi"/>
+        <field name="department_id" ref="demo_dept_dsi"/>
+        <field name="state">assigned</field>
+        <field name="purchase_date">2025-01-15</field>
+        <field name="purchase_value">290000</field>
+        <field name="warranty_end_date">2028-01-15</field>
+    </record>
+
+    <!-- Interventions (5) -->
+    <record id="demo_intervention_01" model="it.parc.intervention">
+        <field name="name">INT/DEMO/0001</field>
+        <field name="equipment_id" ref="demo_equipment_01"/>
+        <field name="intervention_type">preventive</field>
+        <field name="scheduled_date">2026-06-15 09:00:00</field>
+        <field name="date_start">2026-06-15 09:00:00</field>
+        <field name="date_end">2026-06-15 11:30:00</field>
+        <field name="date_done">2026-06-15 11:30:00</field>
+        <field name="cost">75000</field>
+        <field name="technician_id" ref="base.user_admin"/>
+        <field name="status">done</field>
+        <field name="description">Vérification des mises à jour de sécurité et sauvegarde.</field>
+    </record>
+    <record id="demo_intervention_02" model="it.parc.intervention">
+        <field name="name">INT/DEMO/0002</field>
+        <field name="equipment_id" ref="demo_equipment_05"/>
+        <field name="intervention_type">corrective</field>
+        <field name="scheduled_date">2026-06-10 14:00:00</field>
+        <field name="date_start">2026-06-10 14:00:00</field>
+        <field name="date_end">2026-06-10 16:00:00</field>
+        <field name="date_done">2026-06-10 16:00:00</field>
+        <field name="cost">120000</field>
+        <field name="technician_id" ref="base.user_admin"/>
+        <field name="status">done</field>
+        <field name="description">Remplacement du tambour d'impression défectueux.</field>
+    </record>
+    <record id="demo_intervention_03" model="it.parc.intervention">
+        <field name="name">INT/DEMO/0003</field>
+        <field name="equipment_id" ref="demo_equipment_02"/>
+        <field name="intervention_type">preventive</field>
+        <field name="scheduled_date">2026-06-20 08:00:00</field>
+        <field name="technician_id" ref="base.user_admin"/>
+        <field name="status">planned</field>
+        <field name="description">Maintenance préventive serveur ERP — vérification disques RAID.</field>
+    </record>
+    <record id="demo_intervention_04" model="it.parc.intervention">
+        <field name="name">INT/DEMO/0004</field>
+        <field name="equipment_id" ref="demo_equipment_03"/>
+        <field name="intervention_type">corrective</field>
+        <field name="scheduled_date">2026-05-28 10:00:00</field>
+        <field name="date_start">2026-05-28 10:00:00</field>
+        <field name="date_end">2026-05-28 12:00:00</field>
+        <field name="date_done">2026-05-28 12:00:00</field>
+        <field name="cost">95000</field>
+        <field name="technician_id" ref="base.user_admin"/>
+        <field name="status">done</field>
+        <field name="description">Mise à jour firmware switch core.</field>
+    </record>
+    <record id="demo_intervention_05" model="it.parc.intervention">
+        <field name="name">INT/DEMO/0005</field>
+        <field name="equipment_id" ref="demo_equipment_07"/>
+        <field name="intervention_type">preventive</field>
+        <field name="scheduled_date">2026-07-01 07:30:00</field>
+        <field name="technician_id" ref="base.user_admin"/>
+        <field name="status">planned</field>
+        <field name="description">Test de restauration backup serveur Bouaké.</field>
+    </record>
+</odoo>

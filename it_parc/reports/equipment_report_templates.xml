@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_it_parc_equipment_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <h2>Fiche équipement IT</h2>
+                    <p><strong>TECHPARK CI - IT Parc</strong></p>
+                    <table class="table table-sm table-bordered">
+                        <tr><td><strong>Nom</strong></td><td><t t-esc="doc.name"/></td></tr>
+                        <tr><td><strong>Numéro de série</strong></td><td><t t-esc="doc.serial_no"/></td></tr>
+                        <tr><td><strong>Modèle</strong></td><td><t t-esc="doc.model"/></td></tr>
+                        <tr><td><strong>Catégorie</strong></td><td><t t-esc="dict(doc._fields['category'].selection).get(doc.category)"/></td></tr>
+                        <tr><td><strong>Site</strong></td><td><t t-esc="doc.site"/></td></tr>
+                        <tr><td><strong>Employé</strong></td><td><t t-esc="doc.employee_id.name or ''"/></td></tr>
+                        <tr><td><strong>Département</strong></td><td><t t-esc="doc.department_id.name or ''"/></td></tr>
+                        <tr><td><strong>Date d'achat</strong></td><td><t t-esc="doc.purchase_date"/></td></tr>
+                        <tr><td><strong>Valeur d'achat</strong></td><td><t t-esc="doc.purchase_value"/> <t t-esc="doc.currency_id.symbol"/></td></tr>
+                        <tr><td><strong>Fin de garantie</strong></td><td><t t-esc="doc.warranty_end_date"/></td></tr>
+                        <tr><td><strong>Statut</strong></td><td><t t-esc="dict(doc._fields['state'].selection).get(doc.state)"/></td></tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+    <record id="action_report_it_parc_equipment" model="ir.actions.report">
+        <field name="name">Fiche équipement IT Parc</field>
+        <field name="model">it.parc.equipment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">it_parc.report_it_parc_equipment_document</field>
+        <field name="report_file">it_parc.report_it_parc_equipment_document</field>
+        <field name="binding_model_id" ref="model_it_parc_equipment"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_it_parc_inventory_document">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2>Rapport d'inventaire complet</h2>
+                <p><strong>TECHPARK CI - IT Parc</strong></p>
+                <p>TECHPARK CI — Inventaire du parc informatique</p>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nom</th><th>Série</th><th>Catégorie</th><th>Site</th>
+                            <th>Employé</th><th>Département</th><th>Valeur</th><th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td><t t-esc="doc.name"/></td>
+                                <td><t t-esc="doc.serial_no"/></td>
+                                <td><t t-esc="dict(doc._fields['category'].selection).get(doc.category)"/></td>
+                                <td><t t-esc="doc.site"/></td>
+                                <td><t t-esc="doc.employee_id.name or ''"/></td>
+                                <td><t t-esc="doc.department_id.name or ''"/></td>
+                                <td><t t-esc="doc.purchase_value"/></td>
+                                <td><t t-esc="dict(doc._fields['state'].selection).get(doc.state)"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <p>Total : <t t-esc="len(docs)"/> équipement(s)</p>
+            </div>
+        </t>
+    </template>
+    <record id="action_report_it_parc_inventory" model="ir.actions.report">
+        <field name="name">Inventaire IT Parc</field>
+        <field name="model">it.parc.equipment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">it_parc.report_it_parc_inventory_document</field>
+        <field name="report_file">it_parc.report_it_parc_inventory_document</field>
+    </record>
+</odoo>
