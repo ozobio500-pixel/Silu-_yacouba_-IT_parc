@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="ir_config_parameter_alert_days" model="ir.config_parameter">
+        <field name="key">it_parc.alert_days_before</field>
+        <field name="value">30</field>
+    </record>
+
+    <record id="ir_cron_warranty_alert" model="ir.cron">
+        <field name="name">IT Parc - Scan alertes garanties et contrats</field>
+        <field name="model_id" ref="model_it_alerte"/>
+        <field name="state">code</field>
+        <field name="code">model._scan_alerts()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+    <record id="ir_cron_contract_expire" model="ir.cron">
+        <field name="name">IT Parc - Expiration contrats</field>
+        <field name="model_id" ref="model_it_parc_contract"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_check_contracts()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+*.pyc
+__pycache__/
+*.pyo
+*.egg-info/
+dist/
+*.xlsx
+*.csv
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.venv/
+venv/
+*.log

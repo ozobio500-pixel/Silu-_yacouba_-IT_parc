@@ -1,0 +1,55 @@
+{
+    'name': 'IT Parc',
+    'version': '18.0.1.0.0',
+    'summary': 'Gestion du parc informatique TECHPARK CI',
+    'description': """
+Module personnalisé Odoo 18 pour TECHPARK CI.
+Gestion des équipements, affectations, interventions, contrats,
+alertes automatiques, imports CSV, rapports PDF, exports Excel et dashboard OWL.
+    """,
+    'category': 'Services',
+    'author': 'TECHPARK CI',
+    'website': 'https://www.techpark.ci',
+    'depends': [
+        'base',
+        'web',
+        'mail',
+        'contacts',
+        'hr',
+        'stock',
+        'purchase',
+        'account',
+        'maintenance',
+        'calendar',
+    ],
+    'data': [
+        'security/it_parc_security.xml',
+        'security/ir.model.access.csv',
+        'data/sequences.xml',
+        'data/cron_data.xml',
+        'views/equipment_views.xml',
+        'views/assignment_views.xml',
+        'views/intervention_views.xml',
+        'views/contract_views.xml',
+        'views/alerte_views.xml',
+        'views/wizard_views.xml',
+        'views/dashboard_views.xml',
+        'views/res_config_settings_views.xml',
+        'reports/equipment_report_templates.xml',
+        'reports/intervention_report_templates.xml',
+        'reports/contract_report_templates.xml',
+    ],
+    'demo': [
+        'data/it_parc_demo.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'license': 'LGPL-3',
+    'assets': {
+        'web.assets_backend': [
+            'it_parc/static/src/scss/it_parc_dashboard.scss',
+            'it_parc/static/src/xml/it_parc_dashboard.xml',
+            'it_parc/static/src/js/it_parc_dashboard.js',
+        ],
+    },
+}

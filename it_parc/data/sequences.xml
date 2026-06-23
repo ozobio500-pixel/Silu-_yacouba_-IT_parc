@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sequence_it_parc_intervention" model="ir.sequence">
+        <field name="name">IT Parc Intervention</field>
+        <field name="code">it.parc.intervention</field>
+        <field name="prefix">INT/</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>
