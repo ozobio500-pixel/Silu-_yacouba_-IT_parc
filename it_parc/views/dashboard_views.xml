@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="it_parc_dashboard_action" model="ir.actions.client">
+        <field name="name">Dashboard IT Parc</field>
+        <field name="tag">it_parc.dashboard</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+
+    <record id="menu_it_parc_equipment_menu" model="ir.ui.menu">
+        <field name="name">Équipements</field>
+        <field name="parent_id" ref="menu_it_parc_root"/>
+        <field name="action" ref="action_it_parc_equipment"/>
+        <field name="sequence">10</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+    <record id="menu_it_parc_intervention_menu" model="ir.ui.menu">
+        <field name="name">Interventions</field>
+        <field name="parent_id" ref="menu_it_parc_root"/>
+        <field name="action" ref="action_it_parc_intervention"/>
+        <field name="sequence">20</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+    <record id="menu_it_parc_contract_menu" model="ir.ui.menu">
+        <field name="name">Contrats</field>
+        <field name="parent_id" ref="menu_it_parc_root"/>
+        <field name="action" ref="action_it_parc_contract"/>
+        <field name="sequence">30</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_manager')])]"/>
+    </record>
+    <record id="menu_it_parc_alerte_menu" model="ir.ui.menu">
+        <field name="name">Alertes</field>
+        <field name="parent_id" ref="menu_it_parc_root"/>
+        <field name="action" ref="action_it_alerte"/>
+        <field name="sequence">40</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+    <record id="menu_it_parc_dashboard_menu" model="ir.ui.menu">
+        <field name="name">Dashboard IT</field>
+        <field name="parent_id" ref="menu_it_parc_root"/>
+        <field name="action" ref="it_parc_dashboard_action"/>
+        <field name="sequence">50</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+    <record id="menu_it_parc_import_menu" model="ir.ui.menu">
+        <field name="name">Import CSV</field>
+        <field name="parent_id" ref="menu_it_parc_root"/>
+        <field name="action" ref="action_it_parc_import_equipment"/>
+        <field name="sequence">60</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_manager')])]"/>
+    </record>
+    <record id="menu_it_parc_alert_scan_menu" model="ir.ui.menu">
+        <field name="name">Scan alertes</field>
+        <field name="parent_id" ref="menu_it_parc_root"/>
+        <field name="action" ref="action_it_parc_alert_scan_wizard"/>
+        <field name="sequence">70</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+    <record id="menu_it_parc_reports" model="ir.ui.menu">
+        <field name="name">Rapports</field>
+        <field name="parent_id" ref="menu_it_parc_root"/>
+        <field name="sequence">80</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+    <record id="menu_it_parc_inventory_report" model="ir.ui.menu">
+        <field name="name">Inventaire PDF</field>
+        <field name="parent_id" ref="menu_it_parc_reports"/>
+        <field name="action" ref="action_it_parc_inventory_report_wizard"/>
+        <field name="sequence">10</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+    <record id="menu_it_parc_maintenance_report" model="ir.ui.menu">
+        <field name="name">Historique maintenances PDF</field>
+        <field name="parent_id" ref="menu_it_parc_reports"/>
+        <field name="action" ref="action_it_parc_maintenance_report_wizard"/>
+        <field name="sequence">20</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+    <record id="menu_it_parc_assignment_menu" model="ir.ui.menu">
+        <field name="name">Historique affectations</field>
+        <field name="parent_id" ref="menu_it_parc_root"/>
+        <field name="action" ref="action_it_parc_assignment_history"/>
+        <field name="sequence">25</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+</odoo>

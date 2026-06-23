@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_it_parc_equipment_tree" model="ir.ui.view">
+        <field name="name">it.parc.equipment.tree</field>
+        <field name="model">it.parc.equipment</field>
+        <field name="arch" type="xml">
+            <list string="Équipements" decoration-danger="warranty_alert" decoration-warning="contract_alert">
+                <field name="name"/>
+                <field name="serial_no"/>
+                <field name="category"/>
+                <field name="site"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="purchase_value"/>
+                <field name="state"/>
+                <field name="warranty_alert" column_invisible="True"/>
+                <field name="contract_alert" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_it_parc_equipment_form" model="ir.ui.view">
+        <field name="name">it.parc.equipment.form</field>
+        <field name="model">it.parc.equipment</field>
+        <field name="arch" type="xml">
+            <form string="Équipement">
+                <header>
+                    <button name="action_assign" type="object" string="Affecter" class="oe_highlight"
+                            invisible="state != 'draft'" groups="it_parc.group_it_manager"/>
+                    <button name="action_maintenance" type="object" string="Maintenance"
+                            invisible="state not in ('assigned', 'draft')" groups="it_parc.group_it_manager"/>
+                    <button name="action_retire" type="object" string="Retirer"
+                            invisible="state == 'retired'" groups="it_parc.group_it_manager"/>
+                    <button name="open_reassign_wizard" type="object" string="Réaffecter"
+                            invisible="state == 'retired'" groups="it_parc.group_it_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,assigned,maintenance,retired"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_report_it_parc_equipment)d" type="action"
+                                class="oe_stat_button" icon="fa-print" string="Fiche PDF"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="serial_no"/>
+                            <field name="model"/>
+                            <field name="category"/>
+                            <field name="site"/>
+                        </group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="department_id"/>
+                            <field name="assigned_to" readonly="1"/>
+                            <field name="contract_id"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="purchase_date"/>
+                            <field name="purchase_value"/>
+                        </group>
+                        <group>
+                            <field name="warranty_end_date"/>
+                            <field name="warranty_alert"/>
+                            <field name="contract_alert"/>
+                        </group>
+                    </group>
+                </sheet>
+                <notebook>
+                    <page string="Historique d'affectation">
+                        <field name="assignment_history_ids" readonly="1">
+                            <list>
+                                <field name="employee_id"/>
+                                <field name="department_id"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="note"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Interventions">
+                        <field name="intervention_ids" readonly="1">
+                            <list>
+                                <field name="name"/>
+                                <field name="intervention_type"/>
+                                <field name="scheduled_date"/>
+                                <field name="cost"/>
+                                <field name="status"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_it_parc_equipment" model="ir.actions.act_window">
+        <field name="name">Équipements</field>
+        <field name="res_model">it.parc.equipment</field>
+        <field name="view_mode">list,form</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+
+    <record id="action_export_inventory_xlsx" model="ir.actions.server">
+        <field name="name">Export inventaire complet (Excel)</field>
+        <field name="model_id" ref="model_it_parc_equipment"/>
+        <field name="binding_model_id" ref="model_it_parc_equipment"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = model.export_inventory_xlsx()</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_manager')])]"/>
+    </record>
+
+    <record id="action_it_parc_inventory_report_wizard" model="ir.actions.act_window">
+        <field name="name">Rapport inventaire PDF</field>
+        <field name="res_model">it.parc.inventory.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+</odoo>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_it_parc_intervention_tree" model="ir.ui.view">
+        <field name="name">it.parc.intervention.tree</field>
+        <field name="model">it.parc.intervention</field>
+        <field name="arch" type="xml">
+            <list string="Interventions">
+                <field name="name"/>
+                <field name="equipment_id"/>
+                <field name="intervention_type"/>
+                <field name="scheduled_date"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="duration_hours"/>
+                <field name="cost"/>
+                <field name="status"/>
+                <field name="technician_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_it_parc_intervention_form" model="ir.ui.view">
+        <field name="name">it.parc.intervention.form</field>
+        <field name="model">it.parc.intervention</field>
+        <field name="arch" type="xml">
+            <form string="Intervention">
+                <header>
+                    <button name="action_plan" type="object" string="Planifier" class="oe_highlight"
+                            invisible="status != 'draft'"/>
+                    <button name="action_start" type="object" string="Démarrer"
+                            invisible="status not in ('draft', 'planned')"/>
+                    <button name="action_mark_done" type="object" string="Terminer"
+                            invisible="status not in ('planned',)"/>
+                    <button name="action_cancel" type="object" string="Annuler"
+                            invisible="status in ('done', 'cancelled')"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,planned,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="equipment_id"/>
+                            <field name="intervention_type"/>
+                            <field name="technician_id"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_date"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="date_done" readonly="1"/>
+                            <field name="duration_hours" readonly="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="cost"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                        <field name="report"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_parc_intervention_calendar" model="ir.ui.view">
+        <field name="name">it.parc.intervention.calendar</field>
+        <field name="model">it.parc.intervention</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendrier des interventions" date_start="scheduled_date" date_stop="date_end" color="intervention_type" mode="month">
+                <field name="name"/>
+                <field name="equipment_id"/>
+                <field name="technician_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_it_parc_intervention" model="ir.actions.act_window">
+        <field name="name">Interventions</field>
+        <field name="res_model">it.parc.intervention</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+
+    <record id="action_export_maintenance_costs_xlsx" model="ir.actions.server">
+        <field name="name">Synthèse coûts maintenance (Excel)</field>
+        <field name="model_id" ref="model_it_parc_intervention"/>
+        <field name="binding_model_id" ref="model_it_parc_intervention"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = model.export_maintenance_costs_xlsx()</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_manager')])]"/>
+    </record>
+
+    <record id="action_it_parc_maintenance_report_wizard" model="ir.actions.act_window">
+        <field name="name">Historique maintenances PDF</field>
+        <field name="res_model">it.parc.maintenance.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+</odoo>

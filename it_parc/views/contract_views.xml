@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_it_parc_contract_tree" model="ir.ui.view">
+        <field name="name">it.parc.contract.tree</field>
+        <field name="model">it.parc.contract</field>
+        <field name="arch" type="xml">
+            <list string="Contrats" decoration-danger="days_remaining &lt;= 15" decoration-warning="days_remaining &lt;= 30">
+                <field name="name"/>
+                <field name="supplier_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="days_remaining"/>
+                <field name="amount"/>
+                <field name="state"/>
+                <field name="expiring" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_it_parc_contract_form" model="ir.ui.view">
+        <field name="name">it.parc.contract.form</field>
+        <field name="model">it.parc.contract</field>
+        <field name="arch" type="xml">
+            <form string="Contrat">
+                <header>
+                    <button name="action_open_renew_wizard" type="object" string="Renouveler" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="supplier_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="renewal_date"/>
+                        </group>
+                        <group>
+                            <field name="days_remaining"/>
+                            <field name="amount"/>
+                            <field name="currency_id"/>
+                            <field name="expiring"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+                <notebook>
+                    <page string="Équipements liés">
+                        <field name="equipment_ids">
+                            <list>
+                                <field name="name"/>
+                                <field name="serial_no"/>
+                                <field name="employee_id"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_it_parc_contract" model="ir.actions.act_window">
+        <field name="name">Contrats</field>
+        <field name="res_model">it.parc.contract</field>
+        <field name="view_mode">list,form</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_manager')])]"/>
+    </record>
+
+    <record id="action_export_expiring_contracts_xlsx" model="ir.actions.server">
+        <field name="name">Contrats expirant 60j (Excel)</field>
+        <field name="model_id" ref="model_it_parc_contract"/>
+        <field name="binding_model_id" ref="model_it_parc_contract"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = model.export_expiring_contracts_xlsx()</field>
+    </record>
+</odoo>

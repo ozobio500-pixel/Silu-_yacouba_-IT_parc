@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_it_parc_assignment_tree" model="ir.ui.view">
+        <field name="name">it.parc.assignment.history.tree</field>
+        <field name="model">it.parc.assignment.history</field>
+        <field name="arch" type="xml">
+            <list string="Historique des affectations">
+                <field name="equipment_id"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="note"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_it_parc_assignment_history" model="ir.actions.act_window">
+        <field name="name">Historique des affectations</field>
+        <field name="res_model">it.parc.assignment.history</field>
+        <field name="view_mode">list,form</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+</odoo>

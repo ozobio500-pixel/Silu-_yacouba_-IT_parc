@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_it_parc_import_equipment_wizard_form" model="ir.ui.view">
+        <field name="name">it.parc.import.equipment.wizard.form</field>
+        <field name="model">it.parc.import.equipment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import en masse d'équipements">
+                <group>
+                    <field name="file_data" filename="filename"/>
+                    <field name="filename" readonly="1"/>
+                </group>
+                <group>
+                    <field name="created_count"/>
+                    <field name="duplicate_count"/>
+                    <field name="error_count"/>
+                    <field name="report" readonly="1" widget="text"/>
+                </group>
+                <footer>
+                    <button name="action_import" type="object" string="Importer" class="oe_highlight"/>
+                    <button string="Fermer" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_parc_reassign_wizard_form" model="ir.ui.view">
+        <field name="name">it.parc.equipment.reassign.wizard.form</field>
+        <field name="model">it.parc.equipment.reassign.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Réaffecter équipement">
+                <group>
+                    <field name="equipment_id" readonly="1"/>
+                    <field name="new_employee_id"/>
+                    <field name="new_department_id"/>
+                    <field name="reason"/>
+                    <field name="date"/>
+                </group>
+                <footer>
+                    <button name="action_reassign" type="object" string="Réaffecter" class="oe_highlight"/>
+                    <button string="Annuler" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_parc_contract_renewal_wizard_form" model="ir.ui.view">
+        <field name="name">it.parc.contract.renewal.wizard.form</field>
+        <field name="model">it.parc.contract.renewal.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Renouveler contrat">
+                <group>
+                    <field name="contract_id" readonly="1"/>
+                    <field name="new_end_date"/>
+                    <field name="new_amount"/>
+                    <field name="currency_id" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="action_renew_contract" type="object" string="Renouveler" class="oe_highlight"/>
+                    <button string="Annuler" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_parc_alert_scan_wizard_form" model="ir.ui.view">
+        <field name="name">it.parc.alert.scan.wizard.form</field>
+        <field name="model">it.parc.alert.scan.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Scan manuel des alertes">
+                <group>
+                    <field name="alert_days_before"/>
+                    <field name="result_message" readonly="1" invisible="not result_message"/>
+                </group>
+                <footer>
+                    <button name="action_scan" type="object" string="Lancer le scan" class="oe_highlight"/>
+                    <button string="Fermer" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_parc_inventory_report_wizard_form" model="ir.ui.view">
+        <field name="name">it.parc.inventory.report.wizard.form</field>
+        <field name="model">it.parc.inventory.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Rapport inventaire">
+                <group>
+                    <field name="department_id"/>
+                    <field name="category"/>
+                </group>
+                <footer>
+                    <button name="action_print_report" type="object" string="Imprimer PDF" class="oe_highlight"/>
+                    <button string="Annuler" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_it_parc_maintenance_report_wizard_form" model="ir.ui.view">
+        <field name="name">it.parc.maintenance.report.wizard.form</field>
+        <field name="model">it.parc.maintenance.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Historique maintenances">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="equipment_id"/>
+                </group>
+                <footer>
+                    <button name="action_print_report" type="object" string="Imprimer PDF" class="oe_highlight"/>
+                    <button string="Annuler" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_it_parc_import_equipment" model="ir.actions.act_window">
+        <field name="name">Importer équipements</field>
+        <field name="res_model">it.parc.import.equipment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_manager')])]"/>
+    </record>
+
+    <record id="action_it_parc_alert_scan_wizard" model="ir.actions.act_window">
+        <field name="name">Scan alertes</field>
+        <field name="res_model">it.parc.alert.scan.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
+    </record>
+</odoo>
