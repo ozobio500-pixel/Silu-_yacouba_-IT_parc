@@ -1,0 +1,22 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_it_parc_equipment_tech,it.parc.equipment tech,model_it_parc_equipment,group_it_technician,1,0,0,0
+access_it_parc_equipment_mgr,it.parc.equipment mgr,model_it_parc_equipment,group_it_manager,1,1,1,1
+access_it_parc_assignment_tech,it.parc.assignment.history tech,model_it_parc_assignment_history,group_it_technician,1,0,0,0
+access_it_parc_assignment_mgr,it.parc.assignment.history mgr,model_it_parc_assignment_history,group_it_manager,1,1,1,1
+access_it_parc_intervention_tech,it.parc.intervention tech,model_it_parc_intervention,group_it_technician,1,1,1,0
+access_it_parc_intervention_mgr,it.parc.intervention mgr,model_it_parc_intervention,group_it_manager,1,1,1,1
+access_it_parc_contract_tech,it.parc.contract tech,model_it_parc_contract,group_it_technician,1,0,0,0
+access_it_parc_contract_mgr,it.parc.contract mgr,model_it_parc_contract,group_it_manager,1,1,1,1
+access_it_alerte_tech,it.alerte tech,model_it_alerte,group_it_technician,1,0,0,0
+access_it_alerte_mgr,it.alerte mgr,model_it_alerte,group_it_manager,1,1,1,1
+access_it_parc_dashboard_tech,it.parc.dashboard tech,model_it_parc_dashboard,group_it_technician,1,0,0,0
+access_it_parc_dashboard_mgr,it.parc.dashboard mgr,model_it_parc_dashboard,group_it_manager,1,1,1,1
+access_it_parc_import_wizard_mgr,it.parc.import.equipment.wizard mgr,model_it_parc_import_equipment_wizard,group_it_manager,1,1,1,1
+access_it_parc_reassign_wizard_mgr,it.parc.equipment.reassign.wizard mgr,model_it_parc_equipment_reassign_wizard,group_it_manager,1,1,1,1
+access_it_parc_contract_renewal_wizard_mgr,it.parc.contract.renewal.wizard mgr,model_it_parc_contract_renewal_wizard,group_it_manager,1,1,1,1
+access_it_parc_alert_scan_wizard_mgr,it.parc.alert.scan.wizard mgr,model_it_parc_alert_scan_wizard,group_it_manager,1,1,1,1
+access_it_parc_alert_scan_wizard_tech,it.parc.alert.scan.wizard tech,model_it_parc_alert_scan_wizard,group_it_technician,1,1,1,0
+access_it_parc_inventory_report_wizard,it.parc.inventory.report.wizard,model_it_parc_inventory_report_wizard,group_it_manager,1,1,1,1
+access_it_parc_maintenance_report_wizard,it.parc.maintenance.report.wizard,model_it_parc_maintenance_report_wizard,group_it_manager,1,1,1,1
+access_it_parc_inventory_report_wizard_tech,it.parc.inventory.report.wizard tech,model_it_parc_inventory_report_wizard,group_it_technician,1,1,1,0
+access_it_parc_maintenance_report_wizard_tech,it.parc.maintenance.report.wizard tech,model_it_parc_maintenance_report_wizard,group_it_technician,1,1,1,0
