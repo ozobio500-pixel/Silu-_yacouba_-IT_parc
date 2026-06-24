@@ -5,6 +5,12 @@
         <field name="tag">it_parc.dashboard</field>
     </record>
 
+    <menuitem id="menu_it_parc_root"
+              name="IT Parc"
+              sequence="10"
+              web_icon="it_parc,static/description/icon.png"
+              groups="group_it_technician,group_it_manager"/>
+
     <record id="menu_it_parc_equipment_menu" model="ir.ui.menu">
         <field name="name">Équipements</field>
         <field name="parent_id" ref="menu_it_parc_root"/>
