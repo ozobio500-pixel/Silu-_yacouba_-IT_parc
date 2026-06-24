@@ -3,7 +3,6 @@
     <record id="it_parc_dashboard_action" model="ir.actions.client">
         <field name="name">Dashboard IT Parc</field>
         <field name="tag">it_parc.dashboard</field>
-        <field name="groups_id" eval="[(6, 0, [ref('group_it_technician'), ref('group_it_manager')])]"/>
     </record>
 
     <record id="menu_it_parc_equipment_menu" model="ir.ui.menu">
