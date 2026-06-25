@@ -73,6 +73,7 @@ class ItParcIntervention(models.Model):
             'type': 'binary',
             'datas': base64.b64encode(data).decode('ascii'),
             'mimetype': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'res_model': 'it.parc.intervention',
         })
 
     @api.model

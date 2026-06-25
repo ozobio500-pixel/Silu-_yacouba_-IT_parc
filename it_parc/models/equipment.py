@@ -115,6 +115,7 @@ class ItParcEquipment(models.Model):
             'type': 'binary',
             'datas': base64.b64encode(data).decode('ascii'),
             'mimetype': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'res_model': 'it.parc.equipment',
         })
 
     def _xlsx_download_action(self, attachment):
