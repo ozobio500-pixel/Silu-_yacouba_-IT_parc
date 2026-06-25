@@ -26,7 +26,7 @@ class ItParcImportEquipmentWizard(models.TransientModel):
         except UnicodeDecodeError:
             csv_content = base64.b64decode(self.file_data).decode('latin-1')
 
-        reader = csv.DictReader(StringIO('\n'.join(csv_content.splitlines())))
+        reader = csv.DictReader(StringIO(csv_content.replace('\r\n', '\n').replace('\r', '\n')))
         created = 0
         duplicates = 0
         errors = []
