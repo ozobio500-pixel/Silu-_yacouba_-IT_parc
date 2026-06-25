@@ -85,8 +85,9 @@ class ItParcIntervention(models.Model):
         output = BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
         worksheet = workbook.add_worksheet('Coûts maintenance')
-        header_fmt = workbook.add_format({'bold': True, 'bg_color': '#4472C4', 'font_color': 'white'})
-        money_fmt = workbook.add_format({'num_format': '#,##0.00'})
+        cell_fmt = workbook.add_format({'border': 1})
+        header_fmt = workbook.add_format({'bold': True, 'bg_color': '#4472C4', 'font_color': 'white', 'border': 1})
+        money_fmt = workbook.add_format({'num_format': '#,##0.00', 'border': 1})
 
         header = ['Équipement', 'N° série', 'Mois', 'Nb interventions', 'Coût total', 'Durée totale (h)']
         for col, title in enumerate(header):
@@ -107,12 +108,12 @@ class ItParcIntervention(models.Model):
         for key in sorted(summary.keys(), key=lambda k: (summary[k]['equipment'].name, summary[k]['month'])):
             data = summary[key]
             equip = data['equipment']
-            worksheet.write(row, 0, equip.name or '')
-            worksheet.write(row, 1, equip.serial_no or '')
-            worksheet.write(row, 2, data['month'])
-            worksheet.write(row, 3, data['count'])
+            worksheet.write(row, 0, equip.name or '', cell_fmt)
+            worksheet.write(row, 1, equip.serial_no or '', cell_fmt)
+            worksheet.write(row, 2, data['month'], cell_fmt)
+            worksheet.write(row, 3, data['count'], cell_fmt)
             worksheet.write(row, 4, data['cost'], money_fmt)
-            worksheet.write(row, 5, data['duration'])
+            worksheet.write(row, 5, data['duration'], cell_fmt)
             row += 1
 
         workbook.close()

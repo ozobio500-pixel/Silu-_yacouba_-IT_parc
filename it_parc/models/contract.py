@@ -88,10 +88,10 @@ class ItParcContract(models.Model):
         output = BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
         worksheet = workbook.add_worksheet('Contrats expirants')
-        header_fmt = workbook.add_format({'bold': True, 'bg_color': '#4472C4', 'font_color': 'white'})
-        red_fmt = workbook.add_format({'bg_color': '#FFC7CE'})
-        orange_fmt = workbook.add_format({'bg_color': '#FFEB9C'})
-        green_fmt = workbook.add_format({'bg_color': '#C6EFCE'})
+        header_fmt = workbook.add_format({'bold': True, 'bg_color': '#4472C4', 'font_color': 'white', 'border': 1})
+        red_fmt = workbook.add_format({'bg_color': '#C0392B', 'font_color': 'white', 'bold': True, 'border': 1})
+        orange_fmt = workbook.add_format({'bg_color': '#E67E22', 'font_color': 'white', 'bold': True, 'border': 1})
+        green_fmt = workbook.add_format({'bg_color': '#27AE60', 'font_color': 'white', 'border': 1})
 
         header = ['Contrat', 'Fournisseur', 'Début', 'Fin', 'Jours restants', 'Montant', 'Statut']
         for col, title in enumerate(header):
