@@ -24,6 +24,28 @@
         <field name="name">Bamba Serge</field>
         <field name="department_id" ref="demo_dept_support"/>
     </record>
+    <record id="demo_employee_diallo" model="hr.employee">
+        <field name="name">Diallo Fatoumata</field>
+        <field name="department_id" ref="demo_dept_commercial"/>
+    </record>
+    <record id="demo_employee_konan" model="hr.employee">
+        <field name="name">Konan Ambroise</field>
+        <field name="department_id" ref="demo_dept_dsi"/>
+    </record>
+    <record id="demo_dept_rrh" model="hr.department">
+        <field name="name">Ressources Humaines</field>
+    </record>
+    <record id="demo_employee_koffi" model="hr.employee">
+        <field name="name">Koffi Marie</field>
+        <field name="department_id" ref="demo_dept_rrh"/>
+    </record>
+    <record id="demo_dept_daf" model="hr.department">
+        <field name="name">DAF</field>
+    </record>
+    <record id="demo_employee_n'guessan" model="hr.employee">
+        <field name="name">N'Guessan Olivier</field>
+        <field name="department_id" ref="demo_dept_daf"/>
+    </record>
 
     <!-- Contrats (3) -->
     <record id="demo_contract_maintenance" model="it.parc.contract">
@@ -48,6 +70,23 @@
         <field name="start_date">2026-03-01</field>
         <field name="end_date">2027-02-28</field>
         <field name="amount">3200000</field>
+    </record>
+    <record id="demo_contract_cloud" model="it.parc.contract">
+        <field name="name">Cloud AWS TECHPARK</field>
+        <field name="supplier_id" ref="base.res_partner_3"/>
+        <field name="start_date">2025-01-01</field>
+        <field name="end_date">2025-12-31</field>
+        <field name="renewal_date">2025-12-01</field>
+        <field name="amount">8900000</field>
+        <field name="state">expired</field>
+    </record>
+    <record id="demo_contract_antivirus" model="it.parc.contract">
+        <field name="name">Licences Kaspersky</field>
+        <field name="supplier_id" ref="base.res_partner_2"/>
+        <field name="start_date">2026-04-01</field>
+        <field name="end_date">2027-03-31</field>
+        <field name="renewal_date">2027-03-01</field>
+        <field name="amount">2100000</field>
     </record>
 
     <!-- Équipements (10) -->
@@ -181,6 +220,125 @@
         <field name="purchase_value">290000</field>
         <field name="warranty_end_date">2028-01-15</field>
     </record>
+    <record id="demo_equipment_11" model="it.parc.equipment">
+        <field name="name">PC Commercial 02</field>
+        <field name="serial_no">TPCI-011</field>
+        <field name="model">Lenovo ThinkPad X1 Carbon</field>
+        <field name="category">ordinateur</field>
+        <field name="site">Abidjan-Cocody</field>
+        <field name="employee_id" ref="demo_employee_diallo"/>
+        <field name="department_id" ref="demo_dept_commercial"/>
+        <field name="state">assigned</field>
+        <field name="purchase_date">2025-06-01</field>
+        <field name="purchase_value">890000</field>
+        <field name="warranty_end_date">2028-06-01</field>
+    </record>
+    <record id="demo_equipment_12" model="it.parc.equipment">
+        <field name="name">NAS Backup DSI</field>
+        <field name="serial_no">TPCI-012</field>
+        <field name="model">Synology RS1221+</field>
+        <field name="category">serveur</field>
+        <field name="site">Abidjan-Cocody</field>
+        <field name="department_id" ref="demo_dept_dsi"/>
+        <field name="state">draft</field>
+        <field name="purchase_date">2026-02-10</field>
+        <field name="purchase_value">650000</field>
+        <field name="warranty_end_date">2029-02-10</field>
+    </record>
+    <record id="demo_equipment_13" model="it.parc.equipment">
+        <field name="name">Scanner RH</field>
+        <field name="serial_no">TPCI-013</field>
+        <field name="model">Canon DR-C225W II</field>
+        <field name="category">périphérique</field>
+        <field name="site">Abidjan-Cocody</field>
+        <field name="employee_id" ref="demo_employee_koffi"/>
+        <field name="department_id" ref="demo_dept_rrh"/>
+        <field name="state">assigned</field>
+        <field name="purchase_date">2024-09-20</field>
+        <field name="purchase_value">210000</field>
+        <field name="warranty_end_date">2027-09-20</field>
+    </record>
+    <record id="demo_equipment_14" model="it.parc.equipment">
+        <field name="name">PC DAF</field>
+        <field name="serial_no">TPCI-014</field>
+        <field name="model">HP EliteBook 840 G10</field>
+        <field name="category">ordinateur</field>
+        <field name="site">Abidjan-Cocody</field>
+        <field name="employee_id" ref="demo_employee_n'guessan"/>
+        <field name="department_id" ref="demo_dept_daf"/>
+        <field name="state">assigned</field>
+        <field name="purchase_date">2026-01-05</field>
+        <field name="purchase_value">720000</field>
+        <field name="warranty_end_date">2029-01-05</field>
+    </record>
+    <record id="demo_equipment_15" model="it.parc.equipment">
+        <field name="name">Point d'accès Wifi Plateaux</field>
+        <field name="serial_no">TPCI-015</field>
+        <field name="model">UniFi U6 Pro</field>
+        <field name="category">réseau</field>
+        <field name="site">Abidjan-Plateau</field>
+        <field name="department_id" ref="demo_dept_dsi"/>
+        <field name="state">draft</field>
+        <field name="purchase_date">2026-05-12</field>
+        <field name="purchase_value">185000</field>
+        <field name="warranty_end_date">2029-05-12</field>
+    </record>
+
+    <!-- Historique des affectations -->
+    <record id="demo_assignment_01" model="it.parc.assignment.history">
+        <field name="equipment_id" ref="demo_equipment_01"/>
+        <field name="employee_id" ref="demo_employee_kouassi"/>
+        <field name="department_id" ref="demo_dept_dsi"/>
+        <field name="date_from">2024-03-15 08:00:00</field>
+        <field name="note">Affectation initiale au responsable DSI</field>
+    </record>
+    <record id="demo_assignment_02" model="it.parc.assignment.history">
+        <field name="equipment_id" ref="demo_equipment_04"/>
+        <field name="employee_id" ref="demo_employee_traore"/>
+        <field name="department_id" ref="demo_dept_commercial"/>
+        <field name="date_from">2025-02-01 09:00:00</field>
+        <field name="note">PC commercial attribué à l'équipe commerciale</field>
+    </record>
+    <record id="demo_assignment_03" model="it.parc.assignment.history">
+        <field name="equipment_id" ref="demo_equipment_08"/>
+        <field name="employee_id" ref="demo_employee_bamba"/>
+        <field name="department_id" ref="demo_dept_support"/>
+        <field name="date_from">2024-11-01 08:30:00</field>
+        <field name="note">Poste support technique</field>
+    </record>
+    <record id="demo_assignment_04" model="it.parc.assignment.history">
+        <field name="equipment_id" ref="demo_equipment_02"/>
+        <field name="employee_id" ref="demo_employee_kouassi"/>
+        <field name="department_id" ref="demo_dept_dsi"/>
+        <field name="date_from">2023-01-10 07:00:00</field>
+        <field name="note">Serveur ERP attribué à la DSI</field>
+    </record>
+
+    <!-- Alertes -->
+    <record id="demo_alerte_01" model="it.alerte">
+        <field name="name">Garantie expirée - Routeur Bouaké</field>
+        <field name="alert_type">warranty</field>
+        <field name="equipment_id" ref="demo_equipment_09"/>
+        <field name="expiry_date">2022-04-20</field>
+        <field name="state">active</field>
+        <field name="message">La garantie du routeur FortiGate 60F (Bouaké) a expiré depuis le 20/04/2022.</field>
+    </record>
+    <record id="demo_alerte_02" model="it.alerte">
+        <field name="name">Garantie fin proche - Imprimante</field>
+        <field name="alert_type">warranty</field>
+        <field name="equipment_id" ref="demo_equipment_05"/>
+        <field name="expiry_date">2024-08-05</field>
+        <field name="state">active</field>
+        <field name="message">La garantie de l'imprimante HP LaserJet est expirée depuis août 2024.</field>
+    </record>
+    <record id="demo_alerte_03" model="it.alerte">
+        <field name="name">Contrat expiré - Licences Microsoft</field>
+        <field name="alert_type">contract</field>
+        <field name="contract_id" ref="demo_contract_licence"/>
+        <field name="expiry_date">2026-06-30</field>
+        <field name="state">active</field>
+        <field name="message">Le contrat de licences Microsoft expire le 30/06/2026. Prévoyez le renouvellement.</field>
+    </record>
 
     <!-- Interventions (5) -->
     <record id="demo_intervention_01" model="it.parc.intervention">
@@ -239,5 +397,36 @@
         <field name="technician_id" ref="base.user_admin"/>
         <field name="status">planned</field>
         <field name="description">Test de restauration backup serveur Bouaké.</field>
+    </record>
+    <record id="demo_intervention_06" model="it.parc.intervention">
+        <field name="name">INT/DEMO/0006</field>
+        <field name="equipment_id" ref="demo_equipment_08"/>
+        <field name="intervention_type">corrective</field>
+        <field name="scheduled_date">2026-05-20 13:00:00</field>
+        <field name="date_start">2026-05-20 13:00:00</field>
+        <field name="date_end">2026-05-20 14:30:00</field>
+        <field name="date_done">2026-05-20 14:30:00</field>
+        <field name="cost">45000</field>
+        <field name="technician_id" ref="base.user_admin"/>
+        <field name="status">done</field>
+        <field name="description">Réinstallation du système d'exploitation suite à une infection logicielle.</field>
+        <field name="report"><![CDATA[
+<h4>Rapport d'intervention</h4>
+<ul>
+<li><b>Problème :</b> PC lent, pop-ups publicitaires, antivirus désactivé</li>
+<li><b>Action :</b> Réinstallation complète de Windows 11 + mise à jour des pilotes</li>
+<li><b>Résultat :</b> Système opérationnel, sauvegarde des données utilisateur effectuée</li>
+<li><b>Recommandation :</b> Formation sensibilisation cybersécurité pour l'utilisateur</li>
+</ul>
+        ]]></field>
+    </record>
+    <record id="demo_intervention_07" model="it.parc.intervention">
+        <field name="name">INT/DEMO/0007</field>
+        <field name="equipment_id" ref="demo_equipment_10"/>
+        <field name="intervention_type">preventive</field>
+        <field name="scheduled_date">2026-05-10 08:00:00</field>
+        <field name="technician_id" ref="base.user_admin"/>
+        <field name="status">cancelled</field>
+        <field name="description">Calibration de l'écran Dell UltraSharp annulée — utilisateur absent.</field>
     </record>
 </odoo>
