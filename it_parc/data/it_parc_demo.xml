@@ -55,6 +55,7 @@
         <field name="end_date">2026-12-31</field>
         <field name="renewal_date">2026-11-15</field>
         <field name="amount">12000000</field>
+        <field name="currency_id" ref="base.XOF"/>
     </record>
     <record id="demo_contract_licence" model="it.parc.contract">
         <field name="name">Contrat Licences Microsoft</field>
@@ -63,6 +64,7 @@
         <field name="end_date">2026-06-30</field>
         <field name="renewal_date">2026-06-01</field>
         <field name="amount">4500000</field>
+        <field name="currency_id" ref="base.XOF"/>
     </record>
     <record id="demo_contract_reseau" model="it.parc.contract">
         <field name="name">Contrat Maintenance Réseau</field>
@@ -70,6 +72,7 @@
         <field name="start_date">2026-03-01</field>
         <field name="end_date">2027-02-28</field>
         <field name="amount">3200000</field>
+        <field name="currency_id" ref="base.XOF"/>
     </record>
     <record id="demo_contract_cloud" model="it.parc.contract">
         <field name="name">Cloud AWS TECHPARK</field>
@@ -78,6 +81,7 @@
         <field name="end_date">2025-12-31</field>
         <field name="renewal_date">2025-12-01</field>
         <field name="amount">8900000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="state">expired</field>
     </record>
     <record id="demo_contract_antivirus" model="it.parc.contract">
@@ -87,6 +91,7 @@
         <field name="end_date">2027-03-31</field>
         <field name="renewal_date">2027-03-01</field>
         <field name="amount">2100000</field>
+        <field name="currency_id" ref="base.XOF"/>
     </record>
 
     <!-- Équipements (10) -->
@@ -101,6 +106,7 @@
         <field name="state">assigned</field>
         <field name="purchase_date">2024-03-15</field>
         <field name="purchase_value">850000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2027-03-15</field>
         <field name="contract_id" ref="demo_contract_maintenance"/>
     </record>
@@ -115,6 +121,7 @@
         <field name="state">assigned</field>
         <field name="purchase_date">2023-01-10</field>
         <field name="purchase_value">4500000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2026-01-10</field>
         <field name="contract_id" ref="demo_contract_maintenance"/>
     </record>
@@ -128,6 +135,7 @@
         <field name="state">assigned</field>
         <field name="purchase_date">2022-11-20</field>
         <field name="purchase_value">2800000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2025-11-20</field>
         <field name="contract_id" ref="demo_contract_reseau"/>
     </record>
@@ -142,6 +150,7 @@
         <field name="state">assigned</field>
         <field name="purchase_date">2025-02-01</field>
         <field name="purchase_value">620000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2028-02-01</field>
         <field name="contract_id" ref="demo_contract_licence"/>
     </record>
@@ -156,6 +165,7 @@
         <field name="state">maintenance</field>
         <field name="purchase_date">2021-08-05</field>
         <field name="purchase_value">320000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2024-08-05</field>
     </record>
     <record id="demo_equipment_06" model="it.parc.equipment">
@@ -167,6 +177,7 @@
         <field name="state">draft</field>
         <field name="purchase_date">2024-06-12</field>
         <field name="purchase_value">180000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2027-06-12</field>
     </record>
     <record id="demo_equipment_07" model="it.parc.equipment">
@@ -179,6 +190,7 @@
         <field name="state">assigned</field>
         <field name="purchase_date">2023-09-01</field>
         <field name="purchase_value">5200000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2026-09-01</field>
         <field name="contract_id" ref="demo_contract_maintenance"/>
     </record>
@@ -193,6 +205,7 @@
         <field name="state">assigned</field>
         <field name="purchase_date">2024-11-01</field>
         <field name="purchase_value">580000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2027-11-01</field>
     </record>
     <record id="demo_equipment_09" model="it.parc.equipment">
@@ -205,6 +218,7 @@
         <field name="state">retired</field>
         <field name="purchase_date">2019-04-20</field>
         <field name="purchase_value">1100000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2022-04-20</field>
     </record>
     <record id="demo_equipment_10" model="it.parc.equipment">
@@ -218,6 +232,7 @@
         <field name="state">assigned</field>
         <field name="purchase_date">2025-01-15</field>
         <field name="purchase_value">290000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2028-01-15</field>
     </record>
     <record id="demo_equipment_11" model="it.parc.equipment">
@@ -231,6 +246,7 @@
         <field name="state">assigned</field>
         <field name="purchase_date">2025-06-01</field>
         <field name="purchase_value">890000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2028-06-01</field>
     </record>
     <record id="demo_equipment_12" model="it.parc.equipment">
@@ -243,6 +259,7 @@
         <field name="state">draft</field>
         <field name="purchase_date">2026-02-10</field>
         <field name="purchase_value">650000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2029-02-10</field>
     </record>
     <record id="demo_equipment_13" model="it.parc.equipment">
@@ -256,6 +273,7 @@
         <field name="state">assigned</field>
         <field name="purchase_date">2024-09-20</field>
         <field name="purchase_value">210000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2027-09-20</field>
     </record>
     <record id="demo_equipment_14" model="it.parc.equipment">
@@ -269,6 +287,7 @@
         <field name="state">assigned</field>
         <field name="purchase_date">2026-01-05</field>
         <field name="purchase_value">720000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2029-01-05</field>
     </record>
     <record id="demo_equipment_15" model="it.parc.equipment">
@@ -281,6 +300,7 @@
         <field name="state">draft</field>
         <field name="purchase_date">2026-05-12</field>
         <field name="purchase_value">185000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="warranty_end_date">2029-05-12</field>
     </record>
 
@@ -350,6 +370,7 @@
         <field name="date_end">2026-06-15 11:30:00</field>
         <field name="date_done">2026-06-15 11:30:00</field>
         <field name="cost">75000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="technician_id" ref="base.user_admin"/>
         <field name="status">done</field>
         <field name="description">Vérification des mises à jour de sécurité et sauvegarde.</field>
@@ -363,6 +384,7 @@
         <field name="date_end">2026-06-10 16:00:00</field>
         <field name="date_done">2026-06-10 16:00:00</field>
         <field name="cost">120000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="technician_id" ref="base.user_admin"/>
         <field name="status">done</field>
         <field name="description">Remplacement du tambour d'impression défectueux.</field>
@@ -385,6 +407,7 @@
         <field name="date_end">2026-05-28 12:00:00</field>
         <field name="date_done">2026-05-28 12:00:00</field>
         <field name="cost">95000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="technician_id" ref="base.user_admin"/>
         <field name="status">done</field>
         <field name="description">Mise à jour firmware switch core.</field>
@@ -407,6 +430,7 @@
         <field name="date_end">2026-05-20 14:30:00</field>
         <field name="date_done">2026-05-20 14:30:00</field>
         <field name="cost">45000</field>
+        <field name="currency_id" ref="base.XOF"/>
         <field name="technician_id" ref="base.user_admin"/>
         <field name="status">done</field>
         <field name="description">Réinstallation du système d'exploitation suite à une infection logicielle.</field>
